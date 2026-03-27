@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "4ce57fbf-e6d9-4afe-8790-cfe03f028166",
+    "name": "rabbitmq-rety-dlq-sample",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3568702"
+  },
+  "item": [
+    {
+      "name": "payment-service",
+      "item": [
+        {
+          "name": "valid-requests",
+          "item": [
+            {
+              "name": "createPayment",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"orderId\": \"30c64473-7940-4296-86d9-4653cfb17470\",\r\n    \"customerEmail\": \"ss@ss.com\",\r\n    \"amount\": 275.5,\r\n    \"currency\": \"EGP\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/valid/payments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "valid",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "refundPayment",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"orderId\": \"04a81a68-1fbf-4f78-9f9f-c0d17acb5c05\",\r\n    \"customerEmail\": \"mm@mm.com\",\r\n    \"amount\": 150.0,\r\n    \"currency\": \"EGP\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/valid/payments/:paymentId/refund",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "valid",
+                    "payments",
+                    ":paymentId",
+                    "refund"
+                  ],
+                  "variable": [
+                    {
+                      "key": "paymentId",
+                      "value": "9c30f0fa-4de5-4623-99d9-75a277e0d187"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getAllPayments",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/valid/payments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "valid",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "malformed-requests",
+          "item": [
+            {
+              "name": "publishInvalidPaymentCompleted",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/malformed/payments/payment-completed",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "malformed",
+                    "payments",
+                    "payment-completed"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "publishInvalidPaymentRefunded",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/malformed/payments/payment-refunded",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "malformed",
+                    "payments",
+                    "payment-refunded"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "invoice-service",
+      "item": [
+        {
+          "name": "getAllInvoices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/v1/invoices",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "v1",
+                "invoices"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

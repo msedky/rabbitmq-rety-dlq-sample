@@ -1,0 +1,36 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: invoice-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/invoice_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+    listener:
+      simple:
+        default-requeue-rejected: ${SPRING_RABBITMQ_LISTENER_SIMPLE_DEFAULT_REQUEUE_REJECTED:false}
+
+app:
+  retry:
+    invoice:
+      max-attempts: ${APP_RETRY_INVOICE_MAX_ATTEMPTS:3}
+      delay: ${APP_RETRY_INVOICE_DELAY:1000}
+      multiplier: ${APP_RETRY_INVOICE_MULTIPLIER:1.0}
+      max-delay: ${APP_RETRY_INVOICE_MAX_DELAY:1000}
