@@ -163,6 +163,35 @@
       "name": "invoice-service",
       "item": [
         {
+          "name": "getInvoiceByPaymentId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/v1/invoices/payment/:paymentId",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "v1",
+                "invoices",
+                "payment",
+                ":paymentId"
+              ],
+              "variable": [
+                {
+                  "key": "paymentId",
+                  "value": "0d366890-8ce2-447a-a39b-afaff40c4f6f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "getAllInvoices",
           "request": {
             "method": "GET",
